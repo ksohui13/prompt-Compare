@@ -1,51 +1,33 @@
-# 게시글 CRUD 서비스 - 구조화 프롬프트 실험
+# 구조화 프롬프트 실험
 
 ## 목적
 
-기능 단위 + 명확한 제약 조건 + 산출물 구조를 가진 프롬프트가
-코드 품질에 어떤 영향을 주는지 비교한다.
-
----
-
-## 시스템 환경
-
-- Java 21
-- Spring Boot 3.x
-- Gradle
-- H2 Database
-- package: com.example.board
+구조화된 프롬프트가 코드 품질에 어떤 영향을 주는지 비교한다.
 
 ---
 
 ## 공통 규칙
 
-너는 **시니어 Spring Boot 백엔드 개발자**다.
-
-반드시 다음을 지켜라.
-
-- controller / service / repository 구조 유지
-- DTO 사용
-- validation 적용
-- JWT 인증 적용
+Before writing code explain reasoning step by step.
 
 출력 형식
 
-1. 변경 계획
-2. 코드 변경
-3. 생성 파일 목록
+1 Plan  
+2 Reasoning  
+3 Implementation  
+4 Files created  
+5 Verification  
 
 ---
 
 ## 1 회원가입
 
-회원가입 API를 구현해라.
-
-요구사항
+회원가입 API 구현
 
 endpoint  
 POST /api/auth/signup
 
-필드
+fields
 
 email  
 password  
@@ -55,56 +37,82 @@ nickname
 
 - 이메일 중복 검사
 - BCrypt 암호화
-- DTO 사용
+
+Scope 제한
+
+회원가입 기능만 구현  
+다른 기능 수정 금지
 
 ---
 
 ## 2 로그인
 
-로그인 API를 구현해라.
+로그인 API 구현
 
-endpoint
-
+endpoint  
 POST /api/auth/login
 
-요구사항
+조건
 
-- email/password 검증
-- JWT 토큰 발급
+JWT access token 발급
+
+Scope 제한
+
+로그인 기능만 구현
 
 ---
 
-## 3 JWT 보안
+## 3 JWT 인증
 
-Spring Security + JWT 인증 적용
+Spring Security + JWT 인증 구성
 
-요구사항
+조건
 
-- 게시글 조회는 인증 없이 가능
-- 등록/수정/삭제는 인증 필요
+- 게시글 조회 → 인증 필요 없음
+- 등록 수정 삭제 → 인증 필요
+
+Scope 제한
+
+보안 설정만 수정
 
 ---
 
 ## 4 게시글 등록
 
+endpoint
+
 POST /api/posts
 
-필드
+fields
 
 title  
 content
+
+작성자는 로그인 사용자
+
+Scope 제한
+
+등록 기능만 구현
 
 ---
 
 ## 5 게시글 목록 조회
 
+endpoint
+
 GET /api/posts
 
 최신순 정렬
 
+Scope 제한
+
+조회 기능만 구현
+
 ---
 
 ## 6 게시글 상세 조회
+
+endpoint
 
 GET /api/posts/{id}
 
@@ -112,11 +120,15 @@ GET /api/posts/{id}
 
 ## 7 게시글 수정
 
+endpoint
+
 PUT /api/posts/{id}
 
 ---
 
 ## 8 게시글 삭제
+
+endpoint
 
 DELETE /api/posts/{id}
 
@@ -124,16 +136,16 @@ DELETE /api/posts/{id}
 
 ## 9 작성자 권한
 
-작성자만 수정/삭제 가능하도록 구현
+작성자만 수정 삭제 가능
 
 ---
 
 ## 10 Validation
 
-title/content validation 적용
+title / content validation 적용
 
 ---
 
 ## 11 테스트
 
-JUnit 기반 테스트 작성
+JUnit 테스트 작성

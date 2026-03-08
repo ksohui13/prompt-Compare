@@ -2,27 +2,19 @@
 
 ## 문서 목적
 
-회원가입 + 로그인 + 게시글 CRUD 기능을 가진 간단한 서비스 구현을 위한 요구사항 문서
-
----
-
-## 목표
-
-사용자는 로그인 후 게시글을 작성할 수 있다.
-
-모든 사용자는 게시글을 조회할 수 있다.
+회원가입 + 로그인 + 게시글 CRUD 기능을 가진 서비스 요구사항 정의
 
 ---
 
 ## 기술 스택
 
-- Java 21
-- Spring Boot
-- Gradle
-- Spring Data JPA
-- Spring Security
-- H2 Database
-- HTML / CSS / JS
+Java 17  
+Spring Boot 3.x  
+Gradle  
+Spring Data JPA  
+Spring Security  
+H2 Database  
+HTML CSS JS
 
 ---
 
@@ -32,11 +24,16 @@
 
 POST /api/auth/signup
 
-필드
+fields
 
 email  
 password  
 nickname
+
+조건
+
+- 이메일 중복 불가
+- BCrypt 암호화
 
 ---
 
@@ -44,7 +41,7 @@ nickname
 
 POST /api/auth/login
 
-JWT 토큰 발급
+JWT access token 발급
 
 ---
 
@@ -52,10 +49,12 @@ JWT 토큰 발급
 
 POST /api/posts
 
-필드
+fields
 
 title  
 content
+
+작성자는 로그인 사용자
 
 ---
 
@@ -75,10 +74,12 @@ GET /api/posts/{id}
 
 PUT /api/posts/{id}
 
+작성자만 수정 가능
+
 ---
 
 ### 게시글 삭제
 
 DELETE /api/posts/{id}
 
-작성자만 가능
+작성자만 삭제 가능
