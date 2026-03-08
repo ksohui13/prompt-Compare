@@ -3,8 +3,8 @@
 이 프롬프트는 모든 실험 시작 전에 항상 먼저 입력한다.
 
 ## 프로젝트 구조
-board-service
-├ src/main/java/com/example/board
+boardPrompt
+├ src/main/java/com/example/boardPrompt
 │
 ├ auth                          # 인증/사용자 도메인 (회원가입, 로그인, JWT 등)
 │ ├ presentation                # 외부 요청을 받는 계층 (Controller, Request/Response DTO)
@@ -59,7 +59,7 @@ board-service
 │                               # GlobalExceptionHandler
 │                               # ErrorResponse 정의
 │
-└ BoardApplication              # Spring Boot Application Entry Point
+└ BoardPromptApplication        # Spring Boot Application Entry Point
                                 # 애플리케이션 시작 클래스
 ---
 
