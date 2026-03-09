@@ -1,13 +1,4 @@
-# Common Prompt for AI Coding Experiments
-
-이 문서는 **모든 프롬프트 실험 시작 전에 항상 먼저 입력하는 공통 프롬프트**이다.  
-이 프롬프트는 프로젝트 구조, 기술 스택, 아키텍처 규칙, 출력 형식을 정의한다.
-
-AI는 이후 단계에서 **각 기능 프롬프트의 범위 내에서만 코드 수정 및 생성을 수행해야 한다.**
-
----
-
-# Project Overview
+﻿# Project Overview
 
 Project Name
 
@@ -39,7 +30,7 @@ Use the following stack:
 Important:
 
 - The project must run with **Java 17 and Spring Boot 3.x**
-- Use **jakarta.\*** packages when needed
+- Use **jakarta.*** packages when needed
 - The code must be **runnable in a Spring Boot application**
 - Avoid unnecessary complexity
 
