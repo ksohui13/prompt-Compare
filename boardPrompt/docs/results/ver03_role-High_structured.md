@@ -35,3 +35,57 @@ POST
   "path": "/api/posts"
 }
 ```
+
+---
+
+## 게시글 목록 조회
+
+**Endpoint**  
+`GET /api/posts`
+
+**HTTP Method**  
+GET
+
+**Request**  
+없음 (Query parameter 없음)
+
+**Response JSON** (200 OK)
+```json
+[
+  {
+    "id": 1,
+    "title": "string",
+    "content": "string"
+  }
+]
+```
+
+**Error Response JSON**  
+일반적으로 200 + 빈 배열 `[]`
+
+---
+
+## 게시글 상세 조회
+
+**Endpoint**  
+`GET /api/posts/{id}`
+
+**HTTP Method**  
+GET
+
+**Request**  
+Path variable: `id` (Long)
+
+**Response JSON** (200 OK)
+```json
+{
+  "id": 1,
+  "title": "string",
+  "content": "string"
+}
+```
+
+**Error Response JSON** (404 Not Found)
+```json
+// Body 없음, HTTP 404
+```

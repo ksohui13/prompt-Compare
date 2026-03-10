@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-link"><a href="/post-list.html">목록</a></nav>
+        <div id="detailLoading" class="loading">불러오는 중...</div>
+        <article id="postDetail" class="post-detail" hidden>
+            <h1 id="detailTitle" class="post-detail-title"></h1>
+            <div id="detailContent" class="post-detail-content"></div>
+        </article>
+        <div id="detailMessage" class="message" aria-live="polite"></div>
+    </div>
+    <script src="/js/post-detail.js"></script>
+</body>
+</html>

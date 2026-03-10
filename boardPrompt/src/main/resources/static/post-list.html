@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 목록</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-link"><a href="/">글쓰기</a></nav>
+        <h1>게시글 목록</h1>
+        <div id="listLoading" class="loading">불러오는 중...</div>
+        <ul id="postList" class="post-list" aria-label="게시글 목록"></ul>
+        <div id="listMessage" class="message" aria-live="polite"></div>
+    </div>
+    <script src="/js/post-list.js"></script>
+</body>
+</html>

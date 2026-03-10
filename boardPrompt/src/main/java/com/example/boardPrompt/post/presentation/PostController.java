@@ -1,6 +1,7 @@
 package com.example.boardPrompt.post.presentation;
 
 import com.example.boardPrompt.post.application.PostCreateService;
+import com.example.boardPrompt.post.application.PostFindService;
 import com.example.boardPrompt.post.domain.Post;
 import com.example.boardPrompt.post.presentation.dto.PostCreateRequest;
 import com.example.boardPrompt.post.presentation.dto.PostResponse;
@@ -10,16 +11,35 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/posts")
 @RequiredArgsConstructor
 public class PostController {
 
     private final PostCreateService postCreateService;
+    private final PostFindService postFindService;
 
     @PostMapping
     public ResponseEntity<PostResponse> create(@Valid @RequestBody PostCreateRequest request) {
         Post post = postCreateService.create(request.getTitle(), request.getContent());
         return ResponseEntity.status(HttpStatus.CREATED).body(PostResponse.from(post));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PostResponse>> getList() {
+        List<PostResponse> list = postFindService.getList().stream()
+                .map(PostResponse::from)
+                .toList();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostResponse> getById(@PathVariable Long id) {
+        return postFindService.getById(id)
+                .map(PostResponse::from)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

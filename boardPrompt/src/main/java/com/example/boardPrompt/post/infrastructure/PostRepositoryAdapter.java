@@ -5,6 +5,10 @@ import com.example.boardPrompt.post.domain.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class PostRepositoryAdapter implements PostRepositoryPort {
@@ -15,10 +19,26 @@ public class PostRepositoryAdapter implements PostRepositoryPort {
     public Post save(Post post) {
         PostJpaEntity entity = PostJpaEntity.from(post.getTitle(), post.getContent());
         PostJpaEntity saved = postJpaRepository.save(entity);
+        return toPost(saved);
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return postJpaRepository.findAll().stream()
+                .map(this::toPost)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Post> findById(Long id) {
+        return postJpaRepository.findById(id).map(this::toPost);
+    }
+
+    private Post toPost(PostJpaEntity entity) {
         return Post.builder()
-                .id(saved.getId())
-                .title(saved.getTitle())
-                .content(saved.getContent())
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .content(entity.getContent())
                 .build();
     }
 }
