@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>게시글 등록</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #f5f5f7;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      margin-top: 60px;
+      background: #ffffff;
+      padding: 32px 36px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      width: 480px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 22px;
+      color: #222;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d0d0d7;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    input[type="text"] {
+      min-height: auto;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+    }
+
+    .actions {
+      margin-top: 8px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.05s, box-shadow 0.2s;
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    #submitBtn {
+      background-color: #2563eb;
+      color: white;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    #submitBtn:disabled {
+      background-color: #9ca3af;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    #resetBtn {
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+
+    .message {
+      margin-top: 16px;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: none;
+      white-space: pre-line;
+    }
+
+    .message.success {
+      background-color: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .message.error {
+      background-color: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #b91c1c;
+      margin-top: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>게시글 등록</h1>
+
+    <form id="postForm">
+      <div class="form-group">
+        <label for="title">제목 (title)</label>
+        <input type="text" id="title" name="title" placeholder="제목을 입력하세요" />
+        <div id="titleError" class="field-error">제목은 필수입니다.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="content">내용 (content)</label>
+        <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+        <div id="contentError" class="field-error">내용은 필수입니다.</div>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="resetBtn">초기화</button>
+        <button type="submit" id="submitBtn">등록</button>
+      </div>
+    </form>
+
+    <div id="globalMessage" class="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('postForm');
+    const titleInput = document.getElementById('title');
+    const contentInput = document.getElementById('content');
+    const submitBtn = document.getElementById('submitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const globalMessage = document.getElementById('globalMessage');
+    const titleError = document.getElementById('titleError');
+    const contentError = document.getElementById('contentError');
+
+    function clearFieldErrors() {
+      titleError.style.display = 'none';
+      contentError.style.display = 'none';
+    }
+
+    function showGlobalMessage(type, text) {
+      globalMessage.classList.remove('success', 'error');
+      globalMessage.classList.add(type);
+      globalMessage.textContent = text;
+      globalMessage.style.display = 'block';
+    }
+
+    function clearGlobalMessage() {
+      globalMessage.style.display = 'none';
+      globalMessage.textContent = '';
+      globalMessage.classList.remove('success', 'error');
+    }
+
+    async function createPost(title, content) {
+      const response = await fetch('/api/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, content })
+      });
+
+      const contentType = response.headers.get('Content-Type') || '';
+      let body = null;
+      if (contentType.includes('application/json')) {
+        body = await response.json().catch(() => null);
+      } else {
+        body = await response.text().catch(() => null);
+      }
+
+      if (!response.ok) {
+        throw { status: response.status, body };
+      }
+
+      return body;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearFieldErrors();
+      clearGlobalMessage();
+
+      const title = titleInput.value.trim();
+      const content = contentInput.value.trim();
+
+      let hasError = false;
+      if (!title) {
+        titleError.style.display = 'block';
+        hasError = true;
+      }
+      if (!content) {
+        contentError.style.display = 'block';
+        hasError = true;
+      }
+      if (hasError) {
+        showGlobalMessage('error', '필수 항목을 입력해주세요.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+
+      try {
+        const result = await createPost(title, content);
+        const idText = result && typeof result.id !== 'undefined'
+          ? ` (id: ${result.id})`
+          : '';
+
+        showGlobalMessage('success', `게시글이 성공적으로 등록되었습니다.${idText}`);
+        form.reset();
+      } catch (err) {
+        console.error('게시글 등록 실패:', err);
+
+        let message = '게시글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.';
+
+        if (err && err.status === 400 && err.body) {
+          if (typeof err.body === 'string') {
+            message = err.body;
+          } else if (err.body.message) {
+            message = err.body.message;
+          }
+        }
+
+        showGlobalMessage('error', message);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      clearFieldErrors();
+      clearGlobalMessage();
+    });
+  </script>
+</body>
+</html>
+

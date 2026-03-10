@@ -171,7 +171,7 @@ PRD.md 기준으로 게시글 등록 기능을 TDD 방식으로 구현해줘.
 테스트 대상 예시
 - 게시글 등록 성공
 
-작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\06.Aibus\01. 코딩 AI를 활용한 개발론 발표\02. vibe-coding-demo\boardPrompt\docs\results\ver05_prd-Tdd.md`에  다음을 정리해줘.
 - 작성한 테스트 목록
 - API endpoint
 - request JSON
@@ -232,7 +232,7 @@ Tests
 - 목록 조회 테스트
 - 상세 조회 테스트
 
-작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\06.Aibus\01. 코딩 AI를 활용한 개발론 발표\02. vibe-coding-demo\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - 작성한 테스트 목록
 - 목록 조회 endpoint / response JSON
 - 상세 조회 endpoint / response JSON
@@ -290,7 +290,7 @@ PRD.md 기준으로 게시글 수정 기능을 TDD 방식으로 구현해줘.
 Tests
 - 게시글 수정 성공
 
-작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\06.Aibus\01. 코딩 AI를 활용한 개발론 발표\02. vibe-coding-demo\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - 작성한 테스트 목록
 - API endpoint
 - request JSON
@@ -347,7 +347,7 @@ PRD.md 기준으로 게시글 삭제 기능을 TDD 방식으로 구현해줘.
 Tests
 - 게시글 삭제 성공
 
-작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\06.Aibus\01. 코딩 AI를 활용한 개발론 발표\02. vibe-coding-demo\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - 작성한 테스트 목록
 - API endpoint
 - response JSON
@@ -405,7 +405,7 @@ PRD.md 기준으로 Validation을 TDD 방식으로 구현해줘.
 - title 누락 실패
 - content 누락 실패
 
-작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\06.Aibus\01. 코딩 AI를 활용한 개발론 발표\02. vibe-coding-demo\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - 작성한 테스트 목록
 - 어떤 필드에 어떤 검증을 적용했는지
 - validation 실패 응답 예시
