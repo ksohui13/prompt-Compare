@@ -45,12 +45,61 @@
             showMessage(err.message || '오류가 발생했습니다.', true);
         });
 
+    var TITLE_MAX = 500;
+    var titleInput = document.getElementById('title');
+    var contentInput = document.getElementById('content');
+    var titleError = document.getElementById('titleError');
+    var contentError = document.getElementById('contentError');
+
+    function clearFieldErrors() {
+        if (titleError) titleError.textContent = '';
+        if (contentError) contentError.textContent = '';
+        if (titleInput) titleInput.setAttribute('aria-invalid', 'false');
+        if (contentInput) contentInput.setAttribute('aria-invalid', 'false');
+    }
+
+    function setFieldError(field, message) {
+        if (field === 'title' && titleError && titleInput) {
+            titleError.textContent = message;
+            titleInput.setAttribute('aria-invalid', 'true');
+        }
+        if (field === 'content' && contentError && contentInput) {
+            contentError.textContent = message;
+            contentInput.setAttribute('aria-invalid', 'true');
+        }
+    }
+
+    function validate() {
+        clearFieldErrors();
+        var title = titleInput.value.trim();
+        var content = contentInput.value.trim();
+        if (title === '') {
+            setFieldError('title', '제목을 입력하세요');
+            return false;
+        }
+        if (title.length > TITLE_MAX) {
+            setFieldError('title', '제목은 500자 이하여야 합니다');
+            return false;
+        }
+        if (content === '') {
+            setFieldError('content', '내용을 입력하세요');
+            return false;
+        }
+        return true;
+    }
+
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
         clearMessage();
+        clearFieldErrors();
 
-        const title = document.getElementById('title').value.trim();
-        const content = document.getElementById('content').value.trim();
+        if (!validate()) {
+            showMessage('입력값을 확인하세요.', true);
+            return;
+        }
+
+        const title = titleInput.value.trim();
+        const content = contentInput.value.trim();
         const submitBtn = form.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
 

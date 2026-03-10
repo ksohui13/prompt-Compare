@@ -13,11 +13,13 @@
         <form id="postForm" class="post-form">
             <div class="field">
                 <label for="title">제목</label>
-                <input type="text" id="title" name="title" required placeholder="제목을 입력하세요">
+                <input type="text" id="title" name="title" required maxlength="500" placeholder="제목을 입력하세요" aria-describedby="titleError">
+                <span id="titleError" class="field-error" aria-live="polite"></span>
             </div>
             <div class="field">
                 <label for="content">내용</label>
-                <textarea id="content" name="content" rows="6" required placeholder="내용을 입력하세요"></textarea>
+                <textarea id="content" name="content" rows="6" required placeholder="내용을 입력하세요" aria-describedby="contentError"></textarea>
+                <span id="contentError" class="field-error" aria-live="polite"></span>
             </div>
             <button type="submit" class="btn">등록</button>
         </form>

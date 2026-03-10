@@ -190,3 +190,15 @@ h1 {
     color: #94a3b8;
     cursor: not-allowed;
 }
+
+.field-error {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: #b91c1c;
+}
+
+.post-form input[aria-invalid="true"],
+.post-form textarea[aria-invalid="true"] {
+    border-color: #b91c1c;
+}
