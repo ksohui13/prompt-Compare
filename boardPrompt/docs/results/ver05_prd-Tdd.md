@@ -316,3 +316,38 @@
   "path": "/api/posts/999"
 }
 ```
+
+---
+
+## 게시글 삭제 기능 – TDD 구현 정리
+
+### 작성한 테스트 목록
+
+- `PostDeleteServiceTest.delete_success_whenPostExists`
+  - 내용: 존재하는 게시글 삭제 시, 리포지토리에서 `findById`와 `delete`가 호출되는지 검증.
+
+### API Endpoint
+
+- **Endpoint**
+  - `DELETE /api/posts/{id}`
+
+### Response JSON (성공 – 204 No Content)
+
+```json
+null
+```
+
+> HTTP 204 응답으로 바디는 없음을 의미.
+
+### 에러 응답 예시
+
+- **존재하지 않는 게시글 ID로 삭제 요청한 경우 (예: 404 Not Found 가정)**
+
+```json
+{
+  "status": 404,
+  "error": "Not Found",
+  "message": "게시글을 찾을 수 없습니다. id=999",
+  "path": "/api/posts/999"
+}
+```
