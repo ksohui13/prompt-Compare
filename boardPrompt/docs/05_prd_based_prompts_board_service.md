@@ -136,7 +136,7 @@ PRD.md 기준으로 게시글 등록 기능을 구현해줘.
 조건
 - 등록 기능만 구현
 
-작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - API endpoint
 - request JSON
 - response JSON
@@ -193,7 +193,7 @@ PRD.md 기준으로 게시글 조회 기능을 구현해줘.
 - 목록 조회
 - 상세 조회
 
-작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - 목록 조회 endpoint / response JSON
 - 상세 조회 endpoint / response JSON
 ```
@@ -240,7 +240,7 @@ PRD 기준 수정
 ```text
 PRD.md 기준으로 게시글 수정 기능을 구현해줘.
 
-작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - API endpoint
 - request JSON
 - response JSON
@@ -286,7 +286,7 @@ PRD 기준 삭제
 ```text
 PRD.md 기준으로 게시글 삭제 기능을 구현해줘.
 
-작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
 - API endpoint
 - response JSON
 - 에러 응답 예시
@@ -385,7 +385,7 @@ PRD.md 기준으로 공통 예외 처리를 구현해줘.
 - 게시글 없음
 - validation 실패
 
-작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 공통 에러 응답 구조와 예외별 응답 예시를 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`에 공통 에러 응답 구조와 예외별 응답 예시를 정리해줘.
 ```
 
 ---
