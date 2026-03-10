@@ -270,3 +270,49 @@
   "content": "첫 번째 게시글 내용"
 }
 ```
+
+---
+
+## 게시글 수정 기능 – TDD 구현 정리
+
+### 작성한 테스트 목록
+
+- `PostUpdateServiceTest.update_success_whenPostExists`
+  - 내용: 존재하는 게시글의 제목과 내용을 수정하면 수정된 값이 반영된 결과가 반환되는지 검증.
+
+### API Endpoint
+
+- **Endpoint**
+  - `PUT /api/posts/{id}`
+
+### Request JSON
+
+```json
+{
+  "title": "수정된 제목",
+  "content": "수정된 내용"
+}
+```
+
+### Response JSON (성공 – 200 OK)
+
+```json
+{
+  "id": 1,
+  "title": "수정된 제목",
+  "content": "수정된 내용"
+}
+```
+
+### 에러 응답 예시
+
+- **존재하지 않는 게시글 ID로 수정 요청한 경우 (예: 404 Not Found 가정)**
+
+```json
+{
+  "status": 404,
+  "error": "Not Found",
+  "message": "게시글을 찾을 수 없습니다. id=999",
+  "path": "/api/posts/999"
+}
+```
