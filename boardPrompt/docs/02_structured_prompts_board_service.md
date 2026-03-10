@@ -26,9 +26,9 @@ Before writing code explain reasoning step by step.
 2 Reasoning  
 3 Implementation  
 4 Files created  
-5 Verification  
+5 Verification
 
-작업이 끝나면 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 
 프론트는 **HTML / CSS / JavaScript**로 구현한다.
 
@@ -79,8 +79,8 @@ content
 Scope 제한
 등록 기능만 구현
 
-작업이 끝나면 request / response JSON 예시를 알려줘.
-````
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
+```
 
 ---
 
@@ -97,14 +97,15 @@ content
 
 게시글 등록 API 호출
 POST /api/posts
+
 ```
 
 ---
 
 ## 4-4 결과 비교 포인트
 
-* 등록 API 구조
-* 프론트 입력 폼
+- 등록 API 구조
+- 프론트 입력 폼
 
 ---
 
@@ -138,7 +139,7 @@ GET /api/posts
 Scope 제한
 조회 기능만 구현
 
-response JSON 예시 제공
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 ```
 
 ---
@@ -160,9 +161,9 @@ GET /api/posts
 
 ## 5-4 결과 비교 포인트
 
-* 정렬 처리
-* 응답 구조
-* 프론트 리스트 렌더링
+- 정렬 처리
+- 응답 구조
+- 프론트 리스트 렌더링
 
 ---
 
@@ -184,7 +185,7 @@ GET /api/posts/{id}
 endpoint
 GET /api/posts/{id}
 
-response JSON 예시 제공
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 ```
 
 ---
@@ -204,9 +205,9 @@ GET /api/posts/{id}
 
 ## 6-4 결과 비교 포인트
 
-* ID 조회 구조
-* 응답 데이터 구성
-* 프론트 데이터 표시
+- ID 조회 구조
+- 응답 데이터 구성
+- 프론트 데이터 표시
 
 ---
 
@@ -228,7 +229,7 @@ PUT /api/posts/{id}
 endpoint
 PUT /api/posts/{id}
 
-request JSON 예시 제공
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 ```
 
 ---
@@ -248,8 +249,8 @@ PUT /api/posts/{id}
 
 ## 7-4 결과 비교 포인트
 
-* 수정 로직 구조
-* 프론트 수정 폼
+- 수정 로직 구조
+- 프론트 수정 폼
 
 ---
 
@@ -271,7 +272,7 @@ DELETE /api/posts/{id}
 endpoint
 DELETE /api/posts/{id}
 
-response JSON 예시 제공
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 ```
 
 ---
@@ -291,8 +292,8 @@ DELETE /api/posts/{id}
 
 ## 8-4 결과 비교 포인트
 
-* 삭제 API 구조
-* 프론트 삭제 흐름
+- 삭제 API 구조
+- 프론트 삭제 흐름
 
 ---
 
@@ -308,6 +309,8 @@ DELETE /api/posts/{id}
 
 ```text
 작성자만 수정 삭제 가능하게 구현
+
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 ```
 
 ---
@@ -322,8 +325,8 @@ DELETE /api/posts/{id}
 
 ## 9-4 결과 비교 포인트
 
-* 서버 권한 검증
-* 프론트 UI 처리
+- 서버 권한 검증
+- 프론트 UI 처리
 
 ---
 
@@ -339,6 +342,8 @@ title / content validation 적용
 
 ```text
 title / content validation 적용
+
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver02_structured.md`에 반드시 **API endpoint와 request/response JSON 예시를 제공한다.**
 ```
 
 ---
@@ -353,9 +358,9 @@ title / content validation 적용
 
 ## 10-4 결과 비교 포인트
 
-* DTO validation
-* 에러 응답 구조
-* 프론트 입력 검증
+- DTO validation
+- 에러 응답 구조
+- 프론트 입력 검증
 
 ---
 
@@ -385,6 +390,6 @@ JUnit 테스트 작성
 
 ## 11-4 결과 비교 포인트
 
-* 테스트 범위
-* 실행 가능성
-* 핵심 기능 커버 여부
+- 테스트 범위
+- 실행 가능성
+- 핵심 기능 커버 여부

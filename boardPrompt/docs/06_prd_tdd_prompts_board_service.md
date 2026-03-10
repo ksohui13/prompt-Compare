@@ -32,10 +32,10 @@ Bottom-Up Development
 
 반드시 다음을 따른다.
 
-1. 실패하는 테스트 작성  
-2. 테스트 실행  
-3. 최소 코드 구현  
-4. Refactor  
+1. 실패하는 테스트 작성
+2. 테스트 실행
+3. 최소 코드 구현
+4. Refactor
 
 Before writing code explain reasoning step by step.
 
@@ -45,7 +45,7 @@ Before writing code explain reasoning step by step.
 2 Tests  
 3 Implementation  
 4 Refactor  
-5 Verification  
+5 Verification
 
 추가 규칙
 
@@ -53,7 +53,7 @@ Before writing code explain reasoning step by step.
 - 각 단계는 해당 기능 범위만 구현한다
 - 테스트 없이 바로 구현하지 않는다
 - 구현 후에는 테스트 결과를 기준으로 검증한다
-- 작업이 끝나면 API endpoint와 request / response JSON 예시를 함께 정리한다
+- 작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` API endpoint와 request / response JSON 예시를 함께 정리한다
 - 프론트는 HTML / CSS / JavaScript로 구현한다
 - 프론트는 백엔드 API 연동 검증 중심으로 구현한다
 
@@ -63,12 +63,12 @@ Before writing code explain reasoning step by step.
 
 각 기능은 다음 순서로 진행한다.
 
-1. PRD 또는 기능 분석  
-2. 백엔드 테스트 설계  
-3. 실패하는 테스트 작성  
-4. 최소 구현  
-5. 리팩터링  
-6. 프론트 연동 구현  
+1. PRD 또는 기능 분석
+2. 백엔드 테스트 설계
+3. 실패하는 테스트 작성
+4. 최소 구현
+5. 리팩터링
+6. 프론트 연동 구현
 7. 결과 비교
 
 ---
@@ -110,7 +110,7 @@ Scope
 - 구현 단계
 - 테스트 전략
 - 위험 요소
-````
+```
 
 ---
 
@@ -134,10 +134,10 @@ HTML, CSS, JavaScript 기준으로 분석만 해줘.
 
 ## 1-4 결과 비교 포인트
 
-* PRD를 테스트 가능한 단위로 잘 쪼개는가
-* Bottom-Up 순서를 합리적으로 잡는가
-* 위험 요소를 현실적으로 식별하는가
-* 프론트 연동 순서까지 고려하는가
+- PRD를 테스트 가능한 단위로 잘 쪼개는가
+- Bottom-Up 순서를 합리적으로 잡는가
+- 위험 요소를 현실적으로 식별하는가
+- 프론트 연동 순서까지 고려하는가
 
 ---
 
@@ -163,7 +163,7 @@ PRD.md 기준으로 게시글 등록 기능을 TDD 방식으로 구현해줘.
 테스트 대상 예시
 - 게시글 등록 성공
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 작성한 테스트 목록
 - API endpoint
 - request JSON
@@ -193,8 +193,8 @@ PRD.md 기준으로 게시글 등록 화면을 구현해줘.
 
 ## 2-4 결과 비교 포인트
 
-* 최소 구현 후 리팩터링 흔적이 보이는가
-* 프론트에서 성공/실패 케이스가 구분되는가
+- 최소 구현 후 리팩터링 흔적이 보이는가
+- 프론트에서 성공/실패 케이스가 구분되는가
 
 ---
 
@@ -204,8 +204,8 @@ PRD.md 기준으로 게시글 등록 화면을 구현해줘.
 
 Tests
 
-* 목록 조회 테스트
-* 상세 조회 테스트
+- 목록 조회 테스트
+- 상세 조회 테스트
 
 ---
 
@@ -224,7 +224,7 @@ Tests
 - 목록 조회 테스트
 - 상세 조회 테스트
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 작성한 테스트 목록
 - 목록 조회 endpoint / response JSON
 - 상세 조회 endpoint / response JSON
@@ -254,9 +254,9 @@ PRD.md 기준으로 게시글 조회 화면을 구현해줘.
 
 ## 3-4 결과 비교 포인트
 
-* 조회 기능이 테스트 가능한 단위로 나뉘는가
-* 목록 / 상세 응답 구조가 분리되는가
-* 프론트 목록/상세 연동이 자연스러운가
+- 조회 기능이 테스트 가능한 단위로 나뉘는가
+- 목록 / 상세 응답 구조가 분리되는가
+- 프론트 목록/상세 연동이 자연스러운가
 
 ---
 
@@ -282,7 +282,7 @@ PRD.md 기준으로 게시글 수정 기능을 TDD 방식으로 구현해줘.
 Tests
 - 게시글 수정 성공
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 작성한 테스트 목록
 - API endpoint
 - request JSON
@@ -312,8 +312,8 @@ PRD.md 기준으로 게시글 수정 화면을 구현해줘.
 
 ## 4-4 결과 비교 포인트
 
-* 수정 성공/실패 조건이 명확한가
-* 프론트에서 상태를 반영하는가
+- 수정 성공/실패 조건이 명확한가
+- 프론트에서 상태를 반영하는가
 
 ---
 
@@ -339,7 +339,7 @@ PRD.md 기준으로 게시글 삭제 기능을 TDD 방식으로 구현해줘.
 Tests
 - 게시글 삭제 성공
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 작성한 테스트 목록
 - API endpoint
 - response JSON
@@ -368,9 +368,9 @@ PRD.md 기준으로 게시글 삭제 기능을 구현해줘.
 
 ## 5-4 결과 비교 포인트
 
-* 삭제 API 동작이 명확한가
-* 최소 구현 후 정리된 구조가 보이는가
-* 프론트 삭제 흐름이 자연스러운가
+- 삭제 API 동작이 명확한가
+- 최소 구현 후 정리된 구조가 보이는가
+- 프론트 삭제 흐름이 자연스러운가
 
 ---
 
@@ -397,7 +397,7 @@ PRD.md 기준으로 Validation을 TDD 방식으로 구현해줘.
 - title 누락 실패
 - content 누락 실패
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 작성한 테스트 목록
 - 어떤 필드에 어떤 검증을 적용했는지
 - validation 실패 응답 예시
@@ -424,8 +424,8 @@ PRD.md 기준으로 입력값 validation을 화면에 반영해줘.
 
 ## 6-4 결과 비교 포인트
 
-* 검증 규칙이 테스트로 먼저 고정되는가
-* validation 응답 구조가 일관적인가
+- 검증 규칙이 테스트로 먼저 고정되는가
+- validation 응답 구조가 일관적인가
 
 ---
 
@@ -452,7 +452,7 @@ PRD.md 기준으로 공통 예외 처리를 TDD 방식으로 구현해줘.
 - 게시글 없음 예외 응답
 - validation 실패 응답
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 작성한 테스트 목록
 - 공통 에러 응답 구조
 - 예외별 응답 예시
@@ -479,9 +479,9 @@ PRD.md 기준으로 서버 예외 응답을 화면에 반영해줘.
 
 ## 7-4 결과 비교 포인트
 
-* 예외 응답 구조가 테스트로 먼저 정의되는가
-* 공통 에러 포맷이 안정적으로 잡히는가
-* 프론트에서 예외 표시가 일관적인가
+- 예외 응답 구조가 테스트로 먼저 정의되는가
+- 공통 에러 포맷이 안정적으로 잡히는가
+- 프론트에서 예외 표시가 일관적인가
 
 ---
 
@@ -491,12 +491,12 @@ PRD.md 기준으로 서버 예외 응답을 화면에 반영해줘.
 
 특징은 다음과 같다.
 
-* PRD를 먼저 읽고 구현 전략을 세운다
-* 기능을 작은 단위로 나눈다
-* 반드시 실패 테스트부터 작성한다
-* 최소 구현 후 리팩터링한다
-* 백엔드 구현 과정을 테스트 중심으로 비교할 수 있다
-* 프론트는 백엔드 API 연동 검증 중심으로 구현한다
+- PRD를 먼저 읽고 구현 전략을 세운다
+- 기능을 작은 단위로 나눈다
+- 반드시 실패 테스트부터 작성한다
+- 최소 구현 후 리팩터링한다
+- 백엔드 구현 과정을 테스트 중심으로 비교할 수 있다
+- 프론트는 백엔드 API 연동 검증 중심으로 구현한다
 
 이 실험은 단순 기능 구현 비교가 아니라,
 **개발 방법론이 결과물 품질에 미치는 영향**까지 비교하기 위한 실험이다.

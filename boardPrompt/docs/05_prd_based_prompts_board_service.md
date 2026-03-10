@@ -26,7 +26,7 @@ PRD 기반 개발 방식이 코드 품질에 어떤 영향을 주는지 비교�
 2 Reasoning  
 3 Implementation  
 4 Files created  
-5 Verification  
+5 Verification
 
 ---
 
@@ -34,9 +34,9 @@ PRD 기반 개발 방식이 코드 품질에 어떤 영향을 주는지 비교�
 
 각 기능은 다음 순서로 진행한다.
 
-1. PRD 분석 또는 기능 요구사항 확인  
-2. 백엔드 프롬프트 입력  
-3. 프론트 프롬프트 입력  
+1. PRD 분석 또는 기능 요구사항 확인
+2. 백엔드 프롬프트 입력
+3. 프론트 프롬프트 입력
 4. 결과 비교
 
 ---
@@ -78,7 +78,7 @@ Scope
 - post / global 기준 패키지 구조
 - Post 중심 엔티티 설계
 - 예외 처리 방향
-````
+```
 
 ---
 
@@ -101,10 +101,10 @@ HTML, CSS, JavaScript 기준으로 분석만 해줘.
 
 ## 1-4 결과 비교 포인트
 
-* PRD 해석이 정확한가
-* 패키지 구조가 공통 프롬프트와 잘 맞는가
-* 엔티티와 API 설계가 자연스러운가
-* 프론트 화면 구조와 API 연결이 설계 단계에서 정리되는가
+- PRD 해석이 정확한가
+- 패키지 구조가 공통 프롬프트와 잘 맞는가
+- 엔티티와 API 설계가 자연스러운가
+- 프론트 화면 구조와 API 연결이 설계 단계에서 정리되는가
 
 ---
 
@@ -128,7 +128,7 @@ PRD.md 기준으로 게시글 등록 기능을 구현해줘.
 조건
 - 등록 기능만 구현
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - API endpoint
 - request JSON
 - response JSON
@@ -158,9 +158,9 @@ PRD.md 기준으로 게시글 등록 화면을 구현해줘.
 
 ## 2-4 결과 비교 포인트
 
-* PRD 요구사항이 정확히 반영되는가
-* API 형식이 일관적인가
-* 프론트 폼과 API 연결이 되는가
+- PRD 요구사항이 정확히 반영되는가
+- API 형식이 일관적인가
+- 프론트 폼과 API 연결이 되는가
 
 ---
 
@@ -185,7 +185,7 @@ PRD.md 기준으로 게시글 조회 기능을 구현해줘.
 - 목록 조회
 - 상세 조회
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 목록 조회 endpoint / response JSON
 - 상세 조회 endpoint / response JSON
 ```
@@ -213,9 +213,9 @@ PRD.md 기준으로 게시글 조회 화면을 구현해줘.
 
 ## 3-4 결과 비교 포인트
 
-* 목록 / 상세 API가 분리되는가
-* 응답 구조가 깔끔한가
-* 프론트 목록과 상세 화면 연결이 되는가
+- 목록 / 상세 API가 분리되는가
+- 응답 구조가 깔끔한가
+- 프론트 목록과 상세 화면 연결이 되는가
 
 ---
 
@@ -232,7 +232,7 @@ PRD 기준 수정
 ```text
 PRD.md 기준으로 게시글 수정 기능을 구현해줘.
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - API endpoint
 - request JSON
 - response JSON
@@ -260,8 +260,8 @@ PRD.md 기준으로 게시글 수정 화면을 구현해줘.
 
 ## 4-4 결과 비교 포인트
 
-* 수정 권한 검증이 되는가
-* 프론트 수정 흐름이 구현되는가
+- 수정 권한 검증이 되는가
+- 프론트 수정 흐름이 구현되는가
 
 ---
 
@@ -278,7 +278,7 @@ PRD 기준 삭제
 ```text
 PRD.md 기준으로 게시글 삭제 기능을 구현해줘.
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - API endpoint
 - response JSON
 - 에러 응답 예시
@@ -305,9 +305,9 @@ PRD.md 기준으로 게시글 삭제 기능을 구현해줘.
 
 ## 5-4 결과 비교 포인트
 
-* API 응답이 명확한가
-* 프론트 삭제 동작이 되는가
-* 삭제 후 화면 흐름이 자연스러운가
+- API 응답이 명확한가
+- 프론트 삭제 동작이 되는가
+- 삭제 후 화면 흐름이 자연스러운가
 
 ---
 
@@ -328,7 +328,7 @@ PRD.md 기준으로 Validation을 적용해줘.
 - 게시글 등록
 - 게시글 수정
 
-작업이 끝나면 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
 - 어떤 필드에 어떤 검증을 적용했는지
 - validation 실패 응답 예시
 ```
@@ -354,9 +354,9 @@ PRD.md 기준으로 프론트 입력값 validation을 적용해줘.
 
 ## 6-4 결과 비교 포인트
 
-* PRD의 검증 요구사항이 반영되는가
-* 서버 검증과 프론트 검증이 일관적인가
-* 에러 메시지 구조가 정리되는가
+- PRD의 검증 요구사항이 반영되는가
+- 서버 검증과 프론트 검증이 일관적인가
+- 에러 메시지 구조가 정리되는가
 
 ---
 
@@ -377,7 +377,7 @@ PRD.md 기준으로 공통 예외 처리를 구현해줘.
 - 게시글 없음
 - validation 실패
 
-작업이 끝나면 공통 에러 응답 구조와 예외별 응답 예시를 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\05_prd_based_prompts_board_service.md에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 공통 에러 응답 구조와 예외별 응답 예시를 정리해줘.
 ```
 
 ---
@@ -401,9 +401,9 @@ PRD.md 기준으로 API 에러를 화면에서 처리해줘.
 
 ## 7-4 결과 비교 포인트
 
-* 공통 예외 처리 구조가 생기는가
-* 에러 응답이 일관적인가
-* 프론트에서 서버 에러를 적절히 표시하는가
+- 공통 예외 처리 구조가 생기는가
+- 에러 응답이 일관적인가
+- 프론트에서 서버 에러를 적절히 표시하는가
 
 ---
 
@@ -413,11 +413,10 @@ PRD.md 기준으로 API 에러를 화면에서 처리해줘.
 
 특징은 다음과 같다.
 
-* 구현 전에 PRD 분석 단계가 있다
-* 요구사항 해석이 먼저 들어간다
-* 기능 구현은 PRD 기준으로 제한된다
-* 백엔드와 프론트를 함께 구현 가능하다
-* 구조화 프롬프트보다 문서 해석 능력을 더 많이 요구한다
+- 구현 전에 PRD 분석 단계가 있다
+- 요구사항 해석이 먼저 들어간다
+- 기능 구현은 PRD 기준으로 제한된다
+- 백엔드와 프론트를 함께 구현 가능하다
+- 구조화 프롬프트보다 문서 해석 능력을 더 많이 요구한다
 
 이 실험 결과는 이후의 **PRD + TDD 기반 프롬프트 실험**과 비교하기 위한 기준점으로 사용한다.
-
