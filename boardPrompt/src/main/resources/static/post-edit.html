@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정</title>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <h1>게시글 수정</h1>
+        <a href="/index.html" class="btn btn-secondary">목록으로</a>
+    </header>
+
+    <div id="messageArea" class="message-area" aria-live="polite"></div>
+
+    <form id="editForm" class="post-form">
+        <div class="form-group">
+            <label for="title">제목 <span class="required">*</span></label>
+            <input type="text" id="title" name="title" required placeholder="제목을 입력하세요" autocomplete="off">
+            <span class="field-error" id="titleError" role="alert"></span>
+        </div>
+        <div class="form-group">
+            <label for="content">내용 <span class="required">*</span></label>
+            <textarea id="content" name="content" required placeholder="내용을 입력하세요" rows="10"></textarea>
+            <span class="field-error" id="contentError" role="alert"></span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">수정 완료</button>
+            <a href="/index.html" class="btn btn-secondary">취소</a>
+        </div>
+    </form>
+</div>
+
+<script src="/js/post-edit.js"></script>
+</body>
+</html>
+

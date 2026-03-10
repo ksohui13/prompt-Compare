@@ -2,6 +2,7 @@ package com.example.boardPrompt.post.presentation;
 
 import com.example.boardPrompt.post.application.CreatePostUseCase;
 import com.example.boardPrompt.post.application.GetPostUseCase;
+import com.example.boardPrompt.post.application.UpdatePostUseCase;
 import com.example.boardPrompt.post.domain.Post;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class PostController {
 
     private final CreatePostUseCase createPostUseCase;
     private final GetPostUseCase getPostUseCase;
+    private final UpdatePostUseCase updatePostUseCase;
 
     @PostMapping
     public ResponseEntity<PostResponse> create(@Valid @RequestBody CreatePostRequest request) {
@@ -38,6 +40,13 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<PostResponse> getById(@PathVariable Long id) {
         Post post = getPostUseCase.getById(id);
+        return ResponseEntity.ok(new PostResponse(post));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PostResponse> update(@PathVariable Long id,
+                                               @Valid @RequestBody UpdatePostRequest request) {
+        Post post = updatePostUseCase.update(id, request.getTitle(), request.getContent());
         return ResponseEntity.ok(new PostResponse(post));
     }
 }
