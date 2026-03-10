@@ -2,6 +2,7 @@ package com.example.boardPrompt.post.presentation;
 
 import com.example.boardPrompt.post.application.PostCreateService;
 import com.example.boardPrompt.post.application.PostFindService;
+import com.example.boardPrompt.post.application.PostUpdateService;
 import com.example.boardPrompt.post.domain.Post;
 import com.example.boardPrompt.post.presentation.dto.PostCreateRequest;
 import com.example.boardPrompt.post.presentation.dto.PostResponse;
@@ -20,6 +21,7 @@ public class PostController {
 
     private final PostCreateService postCreateService;
     private final PostFindService postFindService;
+    private final PostUpdateService postUpdateService;
 
     @PostMapping
     public ResponseEntity<PostResponse> create(@Valid @RequestBody PostCreateRequest request) {
@@ -38,6 +40,15 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<PostResponse> getById(@PathVariable Long id) {
         return postFindService.getById(id)
+                .map(PostResponse::from)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PostResponse> update(@PathVariable Long id,
+                                               @Valid @RequestBody PostCreateRequest request) {
+        return postUpdateService.update(id, request.getTitle(), request.getContent())
                 .map(PostResponse::from)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

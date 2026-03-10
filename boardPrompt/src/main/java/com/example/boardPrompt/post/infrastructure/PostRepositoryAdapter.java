@@ -34,6 +34,15 @@ public class PostRepositoryAdapter implements PostRepositoryPort {
         return postJpaRepository.findById(id).map(this::toPost);
     }
 
+    @Override
+    public Optional<Post> update(Long id, String title, String content) {
+        return postJpaRepository.findById(id)
+                .map(entity -> {
+                    entity.updateTitleAndContent(title, content);
+                    return toPost(postJpaRepository.save(entity));
+                });
+    }
+
     private Post toPost(PostJpaEntity entity) {
         return Post.builder()
                 .id(entity.getId())

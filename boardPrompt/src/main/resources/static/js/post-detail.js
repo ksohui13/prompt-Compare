@@ -35,6 +35,8 @@
             hideLoading();
             titleEl.textContent = data.title || '(제목 없음)';
             contentEl.textContent = data.content || '';
+            var editLink = document.getElementById('editLink');
+            if (editLink) editLink.href = '/post-edit.html?id=' + encodeURIComponent(data.id);
             detailEl.hidden = false;
         })
         .catch(function (err) {

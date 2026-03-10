@@ -89,3 +89,48 @@ Path variable: `id` (Long)
 ```json
 // Body 없음, HTTP 404
 ```
+
+---
+
+## 게시글 수정
+
+**Endpoint**  
+`PUT /api/posts/{id}`
+
+**HTTP Method**  
+PUT
+
+**Request**  
+Path variable: `id` (Long)  
+Request JSON body:
+```json
+{
+  "title": "string",
+  "content": "string"
+}
+```
+
+**Response JSON** (200 OK)
+```json
+{
+  "id": 1,
+  "title": "string",
+  "content": "string"
+}
+```
+
+**Error Response JSON** (404 Not Found)
+```json
+// Body 없음, HTTP 404
+```
+
+**Error Response JSON** (400 Bad Request - validation 등)
+```json
+{
+  "timestamp": "string",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "string",
+  "path": "/api/posts/{id}"
+}
+```

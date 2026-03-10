@@ -29,4 +29,9 @@ public class PostJpaEntity {
     public static PostJpaEntity from(String title, String content) {
         return new PostJpaEntity(title, content);
     }
+
+    public void updateTitleAndContent(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
