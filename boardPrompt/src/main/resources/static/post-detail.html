@@ -219,16 +219,34 @@
         }
       });
 
-      if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error('해당 ID의 게시글을 찾을 수 없습니다.');
-        }
-        throw new Error('서버 오류가 발생했습니다. (status: ' + response.status + ')');
+      const contentType = response.headers.get('Content-Type') || '';
+      let body = null;
+      if (contentType.includes('application/json')) {
+        body = await response.json().catch(() => null);
+      } else {
+        body = await response.text().catch(() => null);
       }
 
-      const data = await response.json();
+      if (!response.ok) {
+        let message = '게시글을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.';
+
+        if (response.status === 404) {
+          if (body && typeof body === 'object' && body.message) {
+            message = body.message;
+          } else {
+            message = '해당 ID의 게시글을 찾을 수 없습니다.';
+          }
+        } else if (body && typeof body === 'object' && body.message) {
+          message = body.message;
+        }
+
+        hideInfo();
+        showError(message);
+        return;
+      }
+
       hideInfo();
-      renderPost(data);
+      renderPost(body);
     } catch (e) {
       console.error('상세 조회 실패:', e);
       hideInfo();
@@ -252,14 +270,35 @@
 
     try {
       const response = await fetch('/api/posts/' + encodeURIComponent(id), {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
+      const contentType = response.headers.get('Content-Type') || '';
+      let body = null;
+      if (contentType.includes('application/json')) {
+        body = await response.json().catch(() => null);
+      } else {
+        body = await response.text().catch(() => null);
+      }
+
       if (!response.ok) {
+        let message = '게시글 삭제에 실패했습니다. 잠시 후 다시 시도해주세요.';
         if (response.status === 404) {
-          throw new Error('해당 게시글을 찾을 수 없습니다.');
+          if (body && typeof body === 'object' && body.message) {
+            message = body.message;
+          } else {
+            message = '해당 게시글을 찾을 수 없습니다.';
+          }
+        } else if (body && typeof body === 'object' && body.message) {
+          message = body.message;
         }
-        throw new Error('삭제 중 오류가 발생했습니다. (status: ' + response.status + ')');
+
+        hideInfo();
+        showError(message);
+        return;
       }
 
       hideInfo();

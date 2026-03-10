@@ -397,3 +397,123 @@ null
   ]
 }
 ```
+
+---
+
+## 공통 예외 처리 – TDD 구현 정리
+
+### 작성한 테스트 목록
+
+- `PostControllerErrorResponseTest.getById_returnsCommonNotFoundErrorResponse`
+  - 내용: 게시글 조회 시 `PostNotFoundException`이 발생하면 공통 404 에러 응답 구조(`status`, `error`, `message`, `path`)를 반환하는지 검증.
+- `PostControllerErrorResponseTest.create_returnsCommonBadRequestErrorResponse_whenValidationFails`
+  - 내용: 게시글 등록 시 Validation 실패(필수 필드 누락) 발생 시 공통 400 에러 응답 구조를 반환하는지 검증.
+
+### 공통 에러 응답 구조
+
+전역 예외 처리기(`GlobalExceptionHandler`)는 모든 공통 에러를 아래와 같은 JSON 구조로 응답한다.
+
+```json
+{
+  "status": 400,
+  "error": "Bad Request",
+  "message": "요청 값이 유효하지 않습니다.",
+  "path": "/api/posts",
+  "errors": [
+    {
+      "field": "title",
+      "message": "title은 필수입니다."
+    }
+  ]
+}
+```
+
+- **status**: HTTP 상태 코드 (예: 400, 404)
+- **error**: HTTP reason phrase (예: `"Bad Request"`, `"Not Found"`)
+- **message**: 에러 요약 메시지
+- **path**: 요청 URI
+- **errors**: 필드 단위 Validation 에러 목록 (필드 이름과 해당 메시지, 필요 없을 경우 빈 배열/목록)
+
+### 예외별 응답 예시
+
+- **게시글 없음 예외 (`PostNotFoundException`)**
+
+요청: `GET /api/posts/999`
+
+```json
+{
+  "status": 404,
+  "error": "Not Found",
+  "message": "게시글을 찾을 수 없습니다. id=999",
+  "path": "/api/posts/999",
+  "errors": []
+}
+```
+
+- **Validation 실패 (예: title, content 누락)**  
+
+요청: `POST /api/posts`
+
+```json
+{
+  "status": 400,
+  "error": "Bad Request",
+  "message": "요청 값이 유효하지 않습니다.",
+  "path": "/api/posts",
+  "errors": [
+    {
+      "field": "title",
+      "message": "title은 필수입니다."
+    },
+    {
+      "field": "content",
+      "message": "content는 필수입니다."
+    }
+  ]
+}
+```
+
+---
+
+## 프론트엔드 구현 내역 – PRD/TDD 연동 정리
+
+### 구현한 화면 및 역할
+
+- **게시글 목록 화면** (`src/main/resources/static/posts.html`)
+  - `GET /api/posts` 호출로 게시글 리스트 조회.
+  - 각 항목 클릭 시 `post-detail.html?id={id}`로 이동.
+  - 빈 목록일 때 “등록된 게시글이 없습니다.” 메시지 표시.
+  - 서버 에러 발생 시 공통 에러 응답의 `message`(있으면 우선)를 상단 에러 영역에 표시.
+
+- **게시글 상세 화면** (`src/main/resources/static/post-detail.html`)
+  - URL 쿼리스트링의 `id`로 `GET /api/posts/{id}` 조회.
+  - 성공 시 제목/내용을 표시.
+  - “수정” 버튼으로 `post-edit.html?id={id}` 이동.
+  - “삭제” 버튼으로 `DELETE /api/posts/{id}` 호출:
+    - 성공 시 성공 메시지 표시 후 목록 화면으로 리다이렉트.
+    - 404 및 기타 에러 시 공통 에러 응답의 `message`를 기반으로 에러 메시지 표시.
+
+- **게시글 작성 화면** (`src/main/resources/static/post-create.html`)
+  - `title`, `content` 입력 폼.
+  - 클라이언트 단 필수값 검증(빈 값일 경우 필드별 에러 + 전역 에러 메시지).
+  - `POST /api/posts` 호출:
+    - 성공 시 생성된 id를 포함한 성공 메시지 표시 및 폼 초기화.
+    - 400 Validation 실패 시 공통 에러 응답의 `errors[]`를 읽어 필드별 에러 메시지로 반영, 전역 메시지에는 `message` 사용.
+
+- **게시글 수정 화면** (`src/main/resources/static/post-edit.html`)
+  - 진입 시 `GET /api/posts/{id}` 호출로 기존 제목/내용을 폼에 채움.
+  - 클라이언트 단 필수값 검증(빈 값일 경우 필드별 에러 + 전역 에러 메시지).
+  - `PUT /api/posts/{id}` 호출:
+    - 성공 시 성공 메시지 및 id 표시.
+    - 404 시 공통 에러 응답의 `message` 사용.
+    - 400 Validation 실패 시 공통 에러 응답의 `errors[]`를 필드별 에러 메시지로 표시, 전역 메시지에는 `message` 사용.
+
+### 프론트–백엔드 TDD 연동 포인트
+
+- 백엔드 TDD로 정의된 API 스펙 및 Validation/예외 응답(`ErrorResponse`)을 기준으로:
+  - 목록/상세/삭제 화면은 **게시글 없음(404)**, 서버 에러 시 공통 `message`를 사용자에게 노출.
+  - 작성/수정 화면은 **필수 필드 누락(400 Validation 실패)** 시:
+    - `errors[].field`와 `errors[].message`를 읽어 필드별 검증 에러 표시.
+    - 전역 에러 메시지로 `message`(예: “요청 값이 유효하지 않습니다.”)를 표시.
+
+이를 통해 PRD와 TDD로 정의한 백엔드 동작이 프론트엔드 UI/UX에 그대로 반영되도록 구현하였다.

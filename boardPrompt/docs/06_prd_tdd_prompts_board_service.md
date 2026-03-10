@@ -460,7 +460,8 @@ PRD.md 기준으로 공통 예외 처리를 TDD 방식으로 구현해줘.
 - 게시글 없음 예외 응답
 - validation 실패 응답
 
-작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` 다음을 정리해줘.
+작업이 끝나면 `D:\06.Aibus\01. 코딩 AI를 활용한 개발론 발표\02. vibe-coding-demo\boardPrompt\docs\results\ver05_prd-Tdd.md`에
+ 다음을 정리해줘.
 - 작성한 테스트 목록
 - 공통 에러 응답 구조
 - 예외별 응답 예시

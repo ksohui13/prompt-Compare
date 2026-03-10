@@ -223,13 +223,27 @@
         }
       });
 
-      if (!response.ok) {
-        throw new Error('서버 오류가 발생했습니다. (status: ' + response.status + ')');
+      const contentType = response.headers.get('Content-Type') || '';
+      let body = null;
+      if (contentType.includes('application/json')) {
+        body = await response.json().catch(() => null);
+      } else {
+        body = await response.text().catch(() => null);
       }
 
-      const data = await response.json();
+      if (!response.ok) {
+        let message = '게시글 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.';
+        if (body && typeof body === 'object' && body.message) {
+          message = body.message;
+        }
+        hideInfo();
+        renderPosts([]);
+        showError(message);
+        return;
+      }
+
       hideInfo();
-      renderPosts(data);
+      renderPosts(Array.isArray(body) ? body : []);
     } catch (e) {
       console.error('목록 조회 실패:', e);
       hideInfo();
