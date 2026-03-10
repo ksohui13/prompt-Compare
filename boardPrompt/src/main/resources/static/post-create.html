@@ -176,6 +176,8 @@
     function clearFieldErrors() {
       titleError.style.display = 'none';
       contentError.style.display = 'none';
+      titleError.textContent = '제목은 필수입니다.';
+      contentError.textContent = '내용은 필수입니다.';
     }
 
     function showGlobalMessage(type, text) {
@@ -253,9 +255,22 @@
         let message = '게시글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.';
 
         if (err && err.status === 400 && err.body) {
-          if (typeof err.body === 'string') {
+          // 서버 Validation 응답(ErrorResponse)을 반영
+          if (typeof err.body === 'object' && Array.isArray(err.body.errors)) {
+            err.body.errors.forEach(e => {
+              if (e.field === 'title') {
+                titleError.textContent = e.message || '제목은 필수입니다.';
+                titleError.style.display = 'block';
+              }
+              if (e.field === 'content') {
+                contentError.textContent = e.message || '내용은 필수입니다.';
+                contentError.style.display = 'block';
+              }
+            });
+            message = err.body.message || message;
+          } else if (typeof err.body === 'string') {
             message = err.body;
-          } else if (err.body.message) {
+          } else if (err.body && err.body.message) {
             message = err.body.message;
           }
         }

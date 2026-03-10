@@ -351,3 +351,49 @@ null
   "path": "/api/posts/999"
 }
 ```
+
+---
+
+## Validation 기능 – TDD 구현 정리
+
+### 작성한 테스트 목록
+
+- `PostControllerValidationTest.create_shouldFail_whenTitleMissing`
+  - 내용: 게시글 등록 시 `title` 누락 → 400 응답 및 `errors[0].field`가 `title`인지 검증.
+- `PostControllerValidationTest.create_shouldFail_whenContentMissing`
+  - 내용: 게시글 등록 시 `content` 누락 → 400 응답 및 `errors[0].field`가 `content`인지 검증.
+- `PostControllerValidationTest.update_shouldFail_whenTitleMissing`
+  - 내용: 게시글 수정 시 `title` 누락 → 400 응답 및 `errors[0].field`가 `title`인지 검증.
+- `PostControllerValidationTest.update_shouldFail_whenContentMissing`
+  - 내용: 게시글 수정 시 `content` 누락 → 400 응답 및 `errors[0].field`가 `content`인지 검증.
+
+### 필드별 적용한 검증
+
+- `POST /api/posts` – `PostCreateRequest`
+  - `title`: `@NotBlank(message = "title은 필수입니다.")`
+  - `content`: `@NotBlank(message = "content는 필수입니다.")`
+- `PUT /api/posts/{id}` – `PostUpdateRequest`
+  - `title`: `@NotBlank(message = "title은 필수입니다.")`
+  - `content`: `@NotBlank(message = "content는 필수입니다.")`
+
+전역 예외 처리기(`GlobalExceptionHandler`)에서 `MethodArgumentNotValidException`을 처리하여,  
+유효성 검증 실패 시 다음 형태의 공통 에러 응답을 반환한다.
+
+### Validation 실패 응답 예시
+
+예: 게시글 등록 시 `title` 누락 (`POST /api/posts`)
+
+```json
+{
+  "status": 400,
+  "error": "Bad Request",
+  "message": "요청 값이 유효하지 않습니다.",
+  "path": "/api/posts",
+  "errors": [
+    {
+      "field": "title",
+      "message": "title은 필수입니다."
+    }
+  ]
+}
+```
