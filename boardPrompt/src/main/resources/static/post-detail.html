@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>게시글 상세</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #f5f5f7;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      margin-top: 40px;
+      background: #ffffff;
+      padding: 24px 28px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      width: 680px;
+      box-sizing: border-box;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #222;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    a.button-link {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.05s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+
+    a.button-link:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .message {
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      display: none;
+      white-space: pre-line;
+    }
+
+    .message.info {
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .message.error {
+      background-color: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .post-wrapper {
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      padding: 16px 18px;
+      background-color: #ffffff;
+    }
+
+    .post-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 10px;
+      word-break: break-word;
+    }
+
+    .post-content {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>게시글 상세</h1>
+    <div class="actions">
+      <a href="/posts.html" class="button-link">목록으로</a>
+    </div>
+  </header>
+
+  <div id="infoMessage" class="message info"></div>
+  <div id="errorMessage" class="message error"></div>
+
+  <div id="postWrapper" class="post-wrapper" style="display: none;">
+    <div id="postTitle" class="post-title"></div>
+    <div id="postContent" class="post-content"></div>
+  </div>
+</div>
+
+<script>
+  const infoMessage = document.getElementById('infoMessage');
+  const errorMessage = document.getElementById('errorMessage');
+  const postWrapper = document.getElementById('postWrapper');
+  const postTitle = document.getElementById('postTitle');
+  const postContent = document.getElementById('postContent');
+
+  function showInfo(text) {
+    infoMessage.textContent = text;
+    infoMessage.style.display = 'block';
+  }
+
+  function hideInfo() {
+    infoMessage.style.display = 'none';
+    infoMessage.textContent = '';
+  }
+
+  function showError(text) {
+    errorMessage.textContent = text;
+    errorMessage.style.display = 'block';
+  }
+
+  function hideError() {
+    errorMessage.style.display = 'none';
+    errorMessage.textContent = '';
+  }
+
+  function getPostIdFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
+  }
+
+  function renderPost(post) {
+    if (!post) {
+      postWrapper.style.display = 'none';
+      return;
+    }
+    postTitle.textContent = post.title;
+    postContent.textContent = post.content;
+    postWrapper.style.display = 'block';
+  }
+
+  async function fetchPost(id) {
+    hideInfo();
+    hideError();
+    renderPost(null);
+
+    if (!id) {
+      showError('잘못된 접근입니다. 게시글 ID가 필요합니다.');
+      return;
+    }
+
+    showInfo('게시글을 불러오는 중입니다...');
+
+    try {
+      const response = await fetch('/api/posts/' + encodeURIComponent(id), {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('해당 ID의 게시글을 찾을 수 없습니다.');
+        }
+        throw new Error('서버 오류가 발생했습니다. (status: ' + response.status + ')');
+      }
+
+      const data = await response.json();
+      hideInfo();
+      renderPost(data);
+    } catch (e) {
+      console.error('상세 조회 실패:', e);
+      hideInfo();
+      showError(e.message || '게시글을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const id = getPostIdFromQuery();
+    fetchPost(id);
+  });
+</script>
+</body>
+</html>
+

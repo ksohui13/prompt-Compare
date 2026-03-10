@@ -220,3 +220,53 @@
   "content": "게시글 내용"
 }
 ```
+
+---
+
+## 게시글 조회 기능 – TDD 구현 정리 (목록 / 상세)
+
+### 작성한 테스트 목록
+
+- `PostReadServiceTest.getAll_returnsAllPosts`
+  - 내용: 리포지토리에서 반환된 모든 게시글이 `PostReadResult` 리스트로 매핑되어 반환되는지 검증.
+- `PostReadServiceTest.getById_returnsPost`
+  - 내용: 특정 ID로 조회 시 해당 게시글의 `id`, `title`, `content`가 포함된 결과가 반환되는지 검증.
+- `PostReadServiceTest.getById_throwsWhenNotFound`
+  - 내용: 존재하지 않는 ID로 조회할 경우 `PostNotFoundException`이 발생하는지 검증.
+
+### 목록 조회
+
+- **Endpoint**
+  - `GET /api/posts`
+
+- **Response JSON (200 OK)**
+
+```json
+[
+  {
+    "id": 1,
+    "title": "첫 번째 게시글",
+    "content": "첫 번째 게시글 내용"
+  },
+  {
+    "id": 2,
+    "title": "두 번째 게시글",
+    "content": "두 번째 게시글 내용"
+  }
+]
+```
+
+### 상세 조회
+
+- **Endpoint**
+  - `GET /api/posts/{id}`
+
+- **Response JSON (200 OK)**
+
+```json
+{
+  "id": 1,
+  "title": "첫 번째 게시글",
+  "content": "첫 번째 게시글 내용"
+}
+```
