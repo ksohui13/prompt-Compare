@@ -136,7 +136,7 @@ PRD.md 기준으로 게시글 등록 기능을 구현해줘.
 조건
 - 등록 기능만 구현
 
-작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`에 다음을 정리해줘.
+작업이 끝나면 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver04_prd.md`에 다음을 정리해줘.
 - API endpoint
 - request JSON
 - response JSON

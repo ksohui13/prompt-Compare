@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 목록</title>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <h1>게시글 목록</h1>
+        <a href="/post-create.html" class="btn btn-primary">글쓰기</a>
+    </header>
+
+    <div id="messageArea" class="message-area" aria-live="polite"></div>
+
+    <div id="listArea">
+        <table class="post-table">
+            <thead>
+            <tr>
+                <th style="width: 70%">제목</th>
+                <th style="width: 30%">작성일</th>
+            </tr>
+            </thead>
+            <tbody id="postListBody">
+            <!-- 데이터 로드 후 채움 -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/js/post-list.js"></script>
+</body>
+</html>
+
