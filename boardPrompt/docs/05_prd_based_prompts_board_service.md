@@ -17,7 +17,15 @@ PRD 기반 개발 방식이 코드 품질에 어떤 영향을 주는지 비교�
 - 기능 구현은 반드시 **PRD 기준**으로 수행한다
 - Before writing code explain reasoning step by step
 - 작업 범위를 벗어난 수정은 하지 않는다
-- 각 단계가 끝나면 API 경로와 request / response JSON 예시를 정리한다
+- 각 기능 구현 후 반드시 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver04_prd.md`파일에 다음을 제공한다.
+
+API Summary
+Endpoint  
+HTTP Method
+Request JSON
+Response JSON
+Error Response JSON
+
 - 프론트는 HTML / CSS / JavaScript로 구현한다
 
 출력 형식

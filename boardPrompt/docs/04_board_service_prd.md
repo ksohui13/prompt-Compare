@@ -18,7 +18,7 @@ Java 17
 Spring Boot 3.x  
 Gradle  
 Spring Data JPA  
-H2 Database  
+H2 Database
 
 Frontend
 

@@ -53,7 +53,15 @@ Before writing code explain reasoning step by step.
 - 각 단계는 해당 기능 범위만 구현한다
 - 테스트 없이 바로 구현하지 않는다
 - 구현 후에는 테스트 결과를 기준으로 검증한다
-- 작업이 끝나면 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 D:\prompt-compare\prompt-Compare\boardPrompt\docs\06_prd_tdd_prompts_board_service.md`에 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver01_bad.md` API endpoint와 request / response JSON 예시를 함께 정리한다
+- 각 기능 구현 후 반드시 `D:\prompt-compare\prompt-Compare\boardPrompt\docs\results\ver05_prd-Tdd.md`파일에 다음을 제공한다.
+
+API Summary
+Endpoint  
+HTTP Method
+Request JSON
+Response JSON
+Error Response JSON
+
 - 프론트는 HTML / CSS / JavaScript로 구현한다
 - 프론트는 백엔드 API 연동 검증 중심으로 구현한다
 
