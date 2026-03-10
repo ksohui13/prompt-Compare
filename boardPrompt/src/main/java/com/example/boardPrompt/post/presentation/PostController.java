@@ -1,6 +1,7 @@
 package com.example.boardPrompt.post.presentation;
 
 import com.example.boardPrompt.post.application.PostCreateService;
+import com.example.boardPrompt.post.application.PostDeleteService;
 import com.example.boardPrompt.post.application.PostFindService;
 import com.example.boardPrompt.post.application.PostUpdateService;
 import com.example.boardPrompt.post.domain.Post;
@@ -22,6 +23,7 @@ public class PostController {
     private final PostCreateService postCreateService;
     private final PostFindService postFindService;
     private final PostUpdateService postUpdateService;
+    private final PostDeleteService postDeleteService;
 
     @PostMapping
     public ResponseEntity<PostResponse> create(@Valid @RequestBody PostCreateRequest request) {
@@ -52,5 +54,13 @@ public class PostController {
                 .map(PostResponse::from)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        if (postDeleteService.delete(id)) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

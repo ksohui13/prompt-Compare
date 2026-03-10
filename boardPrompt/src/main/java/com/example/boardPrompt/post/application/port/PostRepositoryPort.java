@@ -14,4 +14,6 @@ public interface PostRepositoryPort {
     Optional<Post> findById(Long id);
 
     Optional<Post> update(Long id, String title, String content);
+
+    boolean deleteById(Long id);
 }

@@ -134,3 +134,22 @@ Request JSON body:
   "path": "/api/posts/{id}"
 }
 ```
+
+---
+
+## 게시글 삭제
+
+**Endpoint**  
+`DELETE /api/posts/{id}`
+
+**HTTP Method**  
+DELETE
+
+**Request**  
+Path variable: `id` (Long)
+
+**Response** (204 No Content)  
+Body 없음
+
+**Error Response** (404 Not Found)  
+Body 없음, HTTP 404

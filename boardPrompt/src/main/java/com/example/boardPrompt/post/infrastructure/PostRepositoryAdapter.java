@@ -43,6 +43,15 @@ public class PostRepositoryAdapter implements PostRepositoryPort {
                 });
     }
 
+    @Override
+    public boolean deleteById(Long id) {
+        if (!postJpaRepository.existsById(id)) {
+            return false;
+        }
+        postJpaRepository.deleteById(id);
+        return true;
+    }
+
     private Post toPost(PostJpaEntity entity) {
         return Post.builder()
                 .id(entity.getId())
