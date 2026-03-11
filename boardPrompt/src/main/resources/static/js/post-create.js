@@ -45,27 +45,52 @@
         contentInput.classList.remove('invalid');
     }
 
+    function validateForm() {
+        var title = titleInput.value.trim();
+        var content = contentInput.value.trim();
+        var hasError = false;
+        clearFieldErrors();
+
+        if (!title) {
+            titleError.textContent = '제목은 필수입니다';
+            titleInput.classList.add('invalid');
+            hasError = true;
+        }
+        if (!content) {
+            contentError.textContent = '내용은 필수입니다';
+            contentInput.classList.add('invalid');
+            hasError = true;
+        }
+        if (hasError) {
+            showMessage('입력값을 확인해 주세요. 제목과 내용은 필수입니다.', 'error');
+        }
+        return !hasError;
+    }
+
+    titleInput.addEventListener('input', function () {
+        if (titleError.textContent) {
+            titleError.textContent = '';
+            titleInput.classList.remove('invalid');
+        }
+    });
+    contentInput.addEventListener('input', function () {
+        if (contentError.textContent) {
+            contentError.textContent = '';
+            contentInput.classList.remove('invalid');
+        }
+    });
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         clearMessage();
         clearFieldErrors();
 
+        if (!validateForm()) {
+            return;
+        }
+
         var title = titleInput.value.trim();
         var content = contentInput.value.trim();
-
-        if (!title) {
-            showMessage('제목을 입력해 주세요.', 'error');
-            titleInput.classList.add('invalid');
-            titleError.textContent = '제목은 필수입니다';
-            return;
-        }
-        if (!content) {
-            showMessage('내용을 입력해 주세요.', 'error');
-            contentInput.classList.add('invalid');
-            contentError.textContent = '내용은 필수입니다';
-            return;
-        }
-
         submitBtn.disabled = true;
 
         fetch('/api/posts', {
