@@ -7,8 +7,10 @@
     var deleteBtn = document.getElementById('deleteBtn');
 
     function showMessage(text, type) {
-        messageArea.textContent = text;
+        if (!messageArea) return;
+        messageArea.textContent = text || '';
         messageArea.className = 'message-area ' + (type === 'error' ? 'error' : 'success');
+        messageArea.removeAttribute('hidden');
     }
 
     function clearMessage() {

@@ -8,8 +8,10 @@
     var submitBtn = document.getElementById('submitBtn');
 
     function showMessage(text, type) {
-        messageArea.textContent = text;
+        if (!messageArea) return;
+        messageArea.textContent = text || '';
         messageArea.className = 'message-area ' + (type === 'success' ? 'success' : 'error');
+        messageArea.removeAttribute('hidden');
     }
 
     function clearMessage() {

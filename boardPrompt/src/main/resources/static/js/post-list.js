@@ -3,8 +3,10 @@
     var tbody = document.getElementById('postListBody');
 
     function showMessage(text, type) {
-        messageArea.textContent = text;
+        if (!messageArea) return;
+        messageArea.textContent = text || '';
         messageArea.className = 'message-area ' + (type === 'error' ? 'error' : 'success');
+        messageArea.removeAttribute('hidden');
     }
 
     function clearMessage() {
@@ -76,10 +78,11 @@
                         return [];
                     }
                     if (!res.ok) {
-                        showMessage('게시글 목록을 불러오지 못했습니다.', 'error');
+                        var msg = (data && typeof data === 'object' && data.message) ? data.message : '게시글 목록을 불러오지 못했습니다.';
+                        showMessage(msg, 'error');
                         return [];
                     }
-                    return data;
+                    return Array.isArray(data) ? data : [];
                 });
             })
             .then(function (posts) {
