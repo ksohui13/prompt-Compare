@@ -150,3 +150,12 @@ body {
 .btn-secondary:hover {
     background: #e0e0e0;
 }
+
+.btn-danger {
+    background: #c62828;
+    color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #b71c1c;
+}

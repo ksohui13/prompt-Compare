@@ -3,6 +3,8 @@
     var titleEl = document.getElementById('postTitle');
     var contentEl = document.getElementById('postContent');
     var createdAtEl = document.getElementById('postCreatedAt');
+    var editLink = document.getElementById('editLink');
+    var deleteBtn = document.getElementById('deleteBtn');
 
     function showMessage(text, type) {
         messageArea.textContent = text;
@@ -42,6 +44,47 @@
         titleEl.textContent = post.title || '';
         createdAtEl.textContent = formatDate(post.createdAt);
         contentEl.textContent = post.content || '';
+        if (editLink && post.id) {
+            editLink.href = '/post-edit.html?id=' + encodeURIComponent(post.id);
+        }
+    }
+
+    function deletePost() {
+        var id = getPostIdFromQuery();
+        if (!id) {
+            showMessage('잘못된 접근입니다. 게시글 ID가 없습니다.', 'error');
+            return;
+        }
+        if (!window.confirm('이 게시글을 삭제하시겠습니까?')) {
+            return;
+        }
+        clearMessage();
+        deleteBtn.disabled = true;
+        fetch('/api/posts/' + encodeURIComponent(id), { method: 'DELETE' })
+            .then(function (res) {
+                if (res.status === 204) {
+                    showMessage('게시글이 삭제되었습니다.', 'success');
+                    setTimeout(function () {
+                        window.location.href = '/index.html';
+                    }, 800);
+                    return;
+                }
+                return res.text().then(function (text) {
+                    var data = {};
+                    try {
+                        data = text ? JSON.parse(text) : {};
+                    } catch (err) {
+                        data = { message: '서버 응답을 처리할 수 없습니다.' };
+                    }
+                    showMessage(data.message || '삭제에 실패했습니다.', 'error');
+                });
+            })
+            .catch(function () {
+                showMessage('네트워크 오류가 발생했습니다. 다시 시도해 주세요.', 'error');
+            })
+            .finally(function () {
+                deleteBtn.disabled = false;
+            });
     }
 
     function loadPost() {
@@ -77,6 +120,10 @@
             .catch(function () {
                 showMessage('네트워크 오류가 발생했습니다. 다시 시도해 주세요.', 'error');
             });
+    }
+
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', deletePost);
     }
 
     document.addEventListener('DOMContentLoaded', loadPost);
